@@ -9,6 +9,8 @@ level up your skills with this interactive IDE based webapp with coding challeng
 -   [ ] Ability to add Challenges:
     -   [ ] Via pull request easily with a simple file including a Challenge object.
     -   [ ] Via form interface on the website it's self.
+-   [ ] Navigation with ReactRouter
+-   [ ] MaterialUI styling
 -   [ ] User Registration and Point tracking system.
 -   [ ] Tutorial.
 -   [ ] Bug Fixes.
