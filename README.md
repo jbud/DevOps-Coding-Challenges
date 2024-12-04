@@ -4,14 +4,14 @@ level up your skills with this interactive IDE based webapp with coding challeng
 
 ## Roadmap
 
--   [x]Stylish dark-mode IDE with Jetbrains Mono font.
--   [x]Real-time code execution/evaluation.
--   [ ]Ability to add Challenges:
-    -   [ ] Via pull request easily with a simple file including a Challenge object.
-    -   [ ] Via form interface on the website it's self.
--   [ ]User Registration and Point tracking system.
--   [ ]Tutorial.
--   [ ]Bug Fixes.
+- [x] Stylish dark-mode IDE with Jetbrains Mono font.
+- [x] Real-time code execution/evaluation.
+- [ ] Ability to add Challenges:
+    - [ ] Via pull request easily with a simple file including a Challenge object.
+    - [ ] Via form interface on the website it's self.
+- [ ] User Registration and Point tracking system.
+- [ ] Tutorial.
+- [ ] Bug Fixes.
 
 ## build instructions
 
