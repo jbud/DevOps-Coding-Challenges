@@ -1,5 +1,7 @@
 import { Tab, Tabs } from "@mui/material";
 import React, { useEffect } from "react";
+import { Challenges } from "./challenges/challenges";
+
 interface LinkTabProps {
     label?: string;
     href?: string;
@@ -86,8 +88,10 @@ const Navigation = (props: NavProps) => {
                 },
             }}
         >
-            <LinkTab label="Addition" href="/chal/0" />
-            <LinkTab label="Sum of Squares" href="/chal/1" />
+            {/*{props.challengeSelect.outputText.map((x) => (*/}
+            {Challenges.map((x, index) => (
+                <LinkTab key={index} label={x.title} href={"/chal/" + index} />
+            ))}
         </Tabs>
     );
 };
