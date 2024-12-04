@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getQuickJS } from "quickjs-emscripten";
-import { challenge } from "../Pages/sumOfSquares";
+import { CurrentChallenge as challenge } from "../Pages/Page";
+
 interface Props {
     code: string;
 }

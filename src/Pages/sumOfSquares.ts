@@ -1,6 +1,6 @@
 import { Challenge } from "./types";
 
-export const challenge: Challenge = {
+export const SumOfSquares: Challenge = {
     title: "Sum of Squares",
     description:
         "Create a function that takes a number N and returns the sum of all square numbers up to and including N.",
@@ -29,22 +29,3 @@ export const challenge: Challenge = {
         },
     ],
 };
-
-export const DefaultCode = challenge.defaultEditor;
-
-const Page = () => {
-    return (
-        <>
-            <div className="test">
-                <h3>{challenge.title}</h3>
-                <p>{challenge.description}</p>
-                <h4>Expected Output:</h4>
-                {challenge.outputText.map((x) => (
-                    <p key={x}>{x}</p>
-                ))}
-            </div>
-        </>
-    );
-};
-
-export default Page;
