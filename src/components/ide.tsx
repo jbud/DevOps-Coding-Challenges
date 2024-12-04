@@ -6,12 +6,10 @@ import TestOutput from "./testOutput";
 
 interface Props {
     code: string;
-    tests: string;
 }
 
 const Ide = (props: Props) => {
     const [value, setValue] = useState(props.code);
-    const [test] = useState(props.tests);
     const onChange = useCallback((val: string, viewUpdate: any) => {
         setValue(val);
     }, []);
@@ -29,7 +27,7 @@ const Ide = (props: Props) => {
                 extensions={[andromeda, javascript({ jsx: true })]}
                 onChange={onChange}
             />
-            <TestOutput code={value} test={test} />
+            <TestOutput code={value} />
         </div>
     );
 };
