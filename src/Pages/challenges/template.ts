@@ -7,8 +7,8 @@ export const Template: Challenge = {
     description: "How to complete your challenge",
     outputText: [
         `yourFunction(3,7) ==> 10`,
-        `add(1,2) ==> 3`,
-        `add(4,12) ==> 16`,
+        `yourFunction(1,2) ==> 3`,
+        `yourFunction(4,12) ==> 16`,
     ],
     // The name of your function to be executed and evaluated:
     functionName: "yourFunction",
