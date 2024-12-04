@@ -1,11 +1,13 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { andromedaInit, andromeda } from "@uiw/codemirror-theme-andromeda";
 import TestOutput from "./testOutput";
+import { Challenge } from "../Pages/types";
 
 interface Props {
     code: string;
+    challengeSelect: Challenge;
 }
 
 const Ide = (props: Props) => {
@@ -13,6 +15,11 @@ const Ide = (props: Props) => {
     const onChange = useCallback((val: string, viewUpdate: any) => {
         setValue(val);
     }, []);
+
+    useEffect(() => {
+        setValue(props.challengeSelect.defaultEditor);
+    }, [props]);
+
     return (
         <div className="ide">
             <CodeMirror
@@ -27,7 +34,7 @@ const Ide = (props: Props) => {
                 extensions={[andromeda, javascript({ jsx: true })]}
                 onChange={onChange}
             />
-            <TestOutput code={value} />
+            <TestOutput code={value} currentChallenge={props.challengeSelect} />
         </div>
     );
 };

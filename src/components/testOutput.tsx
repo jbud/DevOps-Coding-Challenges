@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { getQuickJS } from "quickjs-emscripten";
-import { CurrentChallenge as challenge } from "../Pages/Page";
+import { Challenge } from "../Pages/types";
 
 interface Props {
     code: string;
+    currentChallenge: Challenge;
 }
 
 const TestOutput = (props: Props) => {
@@ -25,9 +26,15 @@ const TestOutput = (props: Props) => {
 
     const runTest = (code: string) => {
         setResult([]);
-        let t = challenge.expectedOutputs.map((x) => {
+        let t = props.currentChallenge.expectedOutputs.map((x) => {
             const d = x.in.length === 1 ? x.in[0] : x.in[0] + "," + x.in[1];
-            const str = code + " " + challenge.functionName + "(" + d + ")";
+            const str =
+                code +
+                " " +
+                props.currentChallenge.functionName +
+                "(" +
+                d +
+                ")";
             evaluate(str).then((s) => {
                 let passed = true;
                 if (s != x.out) passed = false;
@@ -40,6 +47,7 @@ const TestOutput = (props: Props) => {
     };
 
     useEffect(() => {
+        setResult([]);
         runTest(props.code);
     }, [props]);
 
