@@ -1,5 +1,6 @@
+import { IconButton } from "@mui/material";
 import { Challenge } from "./types";
-
+import GitHubIcon from "@mui/icons-material/GitHub";
 interface Pages {
     challengeSelect: Challenge;
 }
@@ -14,6 +15,26 @@ const Page = (props: Pages) => {
                 {props.challengeSelect.outputText.map((x) => (
                     <p key={x}>{x}</p>
                 ))}
+                <p className="notice">* User Support coming soon!</p>
+            </div>
+            <div className="bottom">
+                <a
+                    href="https://github.com/jbud/DevOps-Coding-Challenges"
+                    target="_blank"
+                >
+                    <IconButton
+                        sx={{
+                            color: "aliceblue",
+                            fontFamily: "JetBrainsMono",
+                            textDecoration: "none",
+                            textAlign: "center",
+                            fontSize: "1em",
+                        }}
+                    >
+                        <GitHubIcon />
+                        Add a new challenge!
+                    </IconButton>
+                </a>
             </div>
         </>
     );

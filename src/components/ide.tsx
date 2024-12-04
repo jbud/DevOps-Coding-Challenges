@@ -30,7 +30,7 @@ const Ide = (props: Props) => {
                         fontFamily: "JetBrainsMono",
                     },
                 })}
-                height="1000px"
+                height="40vh"
                 extensions={[andromeda, javascript({ jsx: true })]}
                 onChange={onChange}
             />

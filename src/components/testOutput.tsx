@@ -47,7 +47,6 @@ const TestOutput = (props: Props) => {
     };
 
     useEffect(() => {
-        setResult([]);
         runTest(props.code);
     }, [props]);
 

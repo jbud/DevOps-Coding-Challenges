@@ -22,9 +22,19 @@ body {
 .test {
   flex-direction: column;
   padding: 20px;
+  width: 50dvw;
   font-family: 'JetBrainsMono';
 }
 .ide {
   flex-direction: column;
-  width: 80vh;
+  width: 50dvw;
+}
+.notice {
+  font-size: 0.5em;
+  font-style: italic;
+}
+.bottom {
+  position: fixed;
+    left: 50vw;
+    bottom: 10px;
 }
