@@ -6,7 +6,8 @@ level up your skills with this interactive IDE based webapp with coding challeng
 
 -   [x] Stylish dark-mode IDE with Jetbrains Mono font.
 -   [x] Real-time code execution/evaluation.
--   [ ] Ability to add Challenges:
+-   [-] Ability to add Challenges:
+    -   [x] Manually.
     -   [ ] Via pull request easily with a simple file including a Challenge object.
     -   [ ] Via form interface on the website it's self.
 -   [ ] Navigation with ReactRouter
