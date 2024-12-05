@@ -28,17 +28,13 @@ const TestOutput = (props: Props) => {
         setResult([]);
         let t = props.currentChallenge.expectedOutputs.map((x) => {
             const d = x.in.length === 1 ? x.in[0] : x.in[0] + "," + x.in[1];
-            const str =
-                code +
-                " " +
-                props.currentChallenge.functionName +
-                "(" +
-                d +
-                ")";
+            const testStr = props.currentChallenge.functionName + "(" + d + ")";
+            const str = code + " " + testStr;
+
             evaluate(str).then((s) => {
                 let passed = true;
                 if (s != x.out) passed = false;
-                let message = "Expected " + x.out + " got " + s;
+                let message = testStr + " => Expected " + x.out + " got " + s;
                 if (passed) message += " Passed!\n";
                 else message += " Failed!\n";
                 setResult((e) => [...e, message]);
@@ -52,9 +48,14 @@ const TestOutput = (props: Props) => {
 
     return (
         <div className="output">
-            {result.map((item, index) => (
-                <div key={index}>{item}</div>
-            ))}
+            {result.map((item, index) =>
+                result.length >
+                props.currentChallenge.expectedOutputs.length ? (
+                    <></>
+                ) : (
+                    <div key={index}>{item}</div>
+                )
+            )}
         </div>
     );
 };

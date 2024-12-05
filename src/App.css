@@ -13,9 +13,13 @@ body {
   padding: 20px;
 }
 .output {
-  
-  font-size: 2em;
+  font-family: 'JetBrainsMono';
+  margin-top: 10px;
+  font-size: 1.5em;
+  max-height: 30vh;
+  overflow: scroll;
 }
+
 .container {
   display: flex;
 }
@@ -37,4 +41,38 @@ body {
   position: fixed;
     left: 50vw;
     bottom: 10px;
+}
+
+*::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 13px;
+  background-color: #0D1117;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #000000;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #0A0A0A;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: #23262E;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #11406D;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #11406D;
+}
+*::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0);
 }
