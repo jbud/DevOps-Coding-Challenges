@@ -10,6 +10,8 @@ export const Addition: Challenge = {
   return b; // are you up for the challenge??
 }`,
     params: 2,
+    inType: "number",
+    outType: "number",
     expectedOutputs: [
         {
             in: [3, 7],

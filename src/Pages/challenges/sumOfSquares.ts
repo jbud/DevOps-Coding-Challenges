@@ -14,6 +14,8 @@ export const SumOfSquares: Challenge = {
   return num; // are you up for the challenge??
 }`,
     params: 1,
+    inType: "number",
+    outType: "number",
     expectedOutputs: [
         {
             in: [3],

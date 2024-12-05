@@ -11,8 +11,9 @@ level up your skills with this interactive IDE based webapp with coding challeng
     -   [x] Via pull request easily with a simple file including a Challenge object.
             - An example pull request is available at [#3](https://github.com/jbud/DevOps-Coding-Challenges/pull/3)
     -   [ ] Via form interface on the website it's self.
--   [ ] Navigation with ReactRouter
--   [ ] MaterialUI styling
+-   [ ] Dynamic types for input/output during testing
+-   [ ] Navigation with ReactRouter.
+-   [ ] MaterialUI styling.
 -   [ ] User Registration and Point tracking system.
 -   [ ] Tutorial.
 -   [ ] Bug Fixes.

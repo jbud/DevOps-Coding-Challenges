@@ -21,6 +21,8 @@ export const Template: Challenge = {
     // ex: arrayFunction([1,2,3]); is acceptable
     // but arrayFunction([1,2,3],[4,5,6]) is not supported currently
     params: 2,
+    inType: "number",
+    outType: "number",
     // Expected outputs for given inputs during evaluation:
     // NOTE: Challenges are evaluated real-time for each object in this array, keep it small (recommend max 3 tests)
     // NOTE: Array challenges must have input array wrapped in another array

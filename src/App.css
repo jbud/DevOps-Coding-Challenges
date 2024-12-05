@@ -23,7 +23,7 @@ body {
 .output {
   font-family: 'JetBrainsMono';
   margin-top: 10px;
-  font-size: 1.5em;
+  font-size: 1.25em;
   max-height: 30vh;
   overflow: scroll;
 }
