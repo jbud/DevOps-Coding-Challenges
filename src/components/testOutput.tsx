@@ -17,24 +17,48 @@ const TestOutput = (props: Props) => {
                 return res;
             })
             .catch((e) => {
-                //console.log(e);
+                console.log(e);
                 const message = (e as Error).message;
                 setResult([message]);
                 return "failed";
             });
     };
+    interface ParamGen {
+        in: any;
+        out: any;
+    }
+    const generateParams = (x: ParamGen) => {
+        if (Array.isArray(x.in[0])) {
+            return "[" + x.in[0].toString() + "]";
+        }
+        return x.in.length === 1 ? x.in[0] : x.in[0] + "," + x.in[1];
+    };
+
+    const arraysEqual = (arr1: any[], arr2: any[]) => {
+        return JSON.stringify(arr1) === JSON.stringify(arr2);
+    };
 
     const runTest = (code: string) => {
         setResult([]);
         let t = props.currentChallenge.expectedOutputs.map((x) => {
-            const d = x.in.length === 1 ? x.in[0] : x.in[0] + "," + x.in[1];
+            const d = generateParams(x);
             const testStr = props.currentChallenge.functionName + "(" + d + ")";
             const str = code + " " + testStr;
 
             evaluate(str).then((s) => {
                 let passed = true;
-                if (s != x.out) passed = false;
-                let message = testStr + " => Expected " + x.out + " got " + s;
+                let message = "";
+                if (Array.isArray(x.out)) {
+                    try {
+                        if (!arraysEqual(JSON.parse(s), x.out)) passed = false;
+                    } catch (e) {
+                        message =
+                            testStr + " => Expected [" + x.out + "] got " + s;
+                    }
+                } else if (s != x.out) passed = false;
+                if (Array.isArray(x.out))
+                    message = testStr + " => Expected [" + x.out + "] got " + s;
+                else message = testStr + " => Expected " + x.out + " got " + s;
                 if (passed) message += " Passed!\n";
                 else message += " Failed!\n";
                 setResult((e) => [...e, message]);
@@ -51,8 +75,8 @@ const TestOutput = (props: Props) => {
         <div className="output">
             <div>Results:</div>
             {result.map((item, index) =>
-                result.length >
-                props.currentChallenge.expectedOutputs.length ? (
+                result.length > props.currentChallenge.expectedOutputs.length ||
+                false ? (
                     <div key={index}></div>
                 ) : (
                     <div key={index}>{item}</div>

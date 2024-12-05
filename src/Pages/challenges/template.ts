@@ -17,9 +17,15 @@ export const Template: Challenge = {
   return b; // are you up for the challenge??
 }`,
     // the number of parameters for your function's input (currently limited to 1 or 2):
+    // NOTE: Arrays are currently limited to 1 param
+    // ex: arrayFunction([1,2,3]); is acceptable
+    // but arrayFunction([1,2,3],[4,5,6]) is not supported currently
     params: 2,
     // Expected outputs for given inputs during evaluation:
     // NOTE: Challenges are evaluated real-time for each object in this array, keep it small (recommend max 3 tests)
+    // NOTE: Array challenges must have input array wrapped in another array
+    // in: [[1,2,3]] is acceptable
+    // but in: [1,2,3] will assume each of 1,2,3 is a param.
     expectedOutputs: [
         {
             in: [3, 7],
