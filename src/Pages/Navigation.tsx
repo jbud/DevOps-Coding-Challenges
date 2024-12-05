@@ -76,7 +76,6 @@ const Navigation = (props: NavProps) => {
             role="navigation"
             variant="scrollable"
             scrollButtons="auto"
-            centered
             sx={{
                 "&:hover": {
                     color: "#40a9ff",

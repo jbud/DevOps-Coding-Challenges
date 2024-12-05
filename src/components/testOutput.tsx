@@ -40,6 +40,7 @@ const TestOutput = (props: Props) => {
                 setResult((e) => [...e, message]);
             });
         });
+        return true;
     };
 
     useEffect(() => {
@@ -48,10 +49,11 @@ const TestOutput = (props: Props) => {
 
     return (
         <div className="output">
+            <div>Results:</div>
             {result.map((item, index) =>
                 result.length >
                 props.currentChallenge.expectedOutputs.length ? (
-                    <></>
+                    <div key={index}></div>
                 ) : (
                     <div key={index}>{item}</div>
                 )
