@@ -3,7 +3,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { andromedaInit, andromeda } from "@uiw/codemirror-theme-andromeda";
 import TestOutput from "./testOutput";
-import { Challenge } from "../Pages/types";
+import { Challenge } from "../lib/types";
 
 interface Props {
     code: string;
@@ -12,7 +12,7 @@ interface Props {
 
 const Ide = (props: Props) => {
     const [value, setValue] = useState(props.code);
-    const onChange = useCallback((val: string, viewUpdate: any) => {
+    const onChange = useCallback((val: string) => {
         setValue(val);
     }, []);
 

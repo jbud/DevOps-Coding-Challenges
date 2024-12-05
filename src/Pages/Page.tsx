@@ -1,5 +1,5 @@
 import { IconButton } from "@mui/material";
-import { Challenge } from "./types";
+import { Challenge } from "../lib/types";
 import GitHubIcon from "@mui/icons-material/GitHub";
 interface Pages {
     challengeSelect: Challenge;

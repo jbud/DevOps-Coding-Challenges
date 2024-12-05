@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    useParams,
-    useMatch,
-} from "react-router-dom";
+import { Routes, Route, useMatch } from "react-router-dom";
 import "./App.css";
 import Ide from "./components/ide";
-import Page from "./Pages/Page";
-import { Challenges } from "./Pages/challenges/challenges";
-import Navigation from "./Pages/Navigation";
+import Page from "./pages/Page";
+import { Challenges } from "./challenges/challenges";
+import Navigation from "./components/Navigation";
 
 function App() {
     const [current, setCurrent] = useState(Challenges[0]);

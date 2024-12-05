@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getQuickJS } from "quickjs-emscripten";
-import { Challenge } from "../Pages/types";
+import { Challenge } from "../lib/types";
 
 interface Props {
     code: string;
@@ -57,9 +57,9 @@ const TestOutput = (props: Props) => {
         return JSON.stringify(arr1) === JSON.stringify(arr2);
     };
 
-    const objectsEqual = (obj1: any, obj2: any) => {
+    /* const objectsEqual = (obj1: any, obj2: any) => {
         return JSON.stringify(obj1) === JSON.stringify(obj2);
-    };
+    }; */
 
     const runTest = (code: string) => {
         setResult([]);

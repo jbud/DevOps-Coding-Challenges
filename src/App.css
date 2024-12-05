@@ -1,10 +1,8 @@
-
-
 @font-face {
   font-family: 'JetBrainsMono';
   font-weight: 400;
   font-style: normal;
-  src: url("webfonts/JetBrainsMono-Medium.woff2") format('woff2');
+  src: url("assets/webfonts/JetBrainsMono-Medium.woff2") format('woff2');
 }
 
 
@@ -13,13 +11,17 @@ body {
   color: aliceblue;
   padding: 20px;
   -webkit-user-select: none;
-    /* Chrome all / Safari all */
-    -moz-user-select: none;
-    /* Firefox all */
-    -ms-user-select: none;
-    /* IE 10+ */
-    user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
 }
+h1 {
+  font-family: 'JetBrainsMono';
+}
+
 .output {
   font-family: 'JetBrainsMono';
   margin-top: 10px;
@@ -31,24 +33,28 @@ body {
 .container {
   display: flex;
 }
+
 .test {
   flex-direction: column;
   padding: 20px;
   width: 50dvw;
   font-family: 'JetBrainsMono';
 }
+
 .ide {
   flex-direction: column;
   width: 50dvw;
 }
+
 .notice {
   font-size: 0.5em;
   font-style: italic;
 }
+
 .bottom {
   position: fixed;
-    left: 50vw;
-    bottom: 10px;
+  left: 50vw;
+  bottom: 10px;
 }
 
 *::-webkit-scrollbar {
@@ -81,6 +87,7 @@ body {
 *::-webkit-scrollbar-thumb:active {
   background-color: #11406D;
 }
+
 *::-webkit-scrollbar-corner {
   background: rgba(0, 0, 0, 0);
 }
