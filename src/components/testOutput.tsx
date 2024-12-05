@@ -28,14 +28,25 @@ const TestOutput = (props: Props) => {
         out: any;
     }
     const generateParams = (x: ParamGen) => {
-        if (Array.isArray(x.in[0])) {
-            return "[" + x.in[0].toString() + "]";
+        switch (props.currentChallenge.inType) {
+            case "array":
+                return "[" + x.in[0].toString() + "]";
+            case "string":
+                return x.in.length === 1
+                    ? '"' + x.in[0] + '"'
+                    : '"' + x.in[0] + '"' + "," + '"' + x.in[1] + '"';
+            case "number":
+            default:
+                return x.in.length === 1 ? x.in[0] : x.in[0] + "," + x.in[1];
         }
-        return x.in.length === 1 ? x.in[0] : x.in[0] + "," + x.in[1];
     };
 
     const arraysEqual = (arr1: any[], arr2: any[]) => {
         return JSON.stringify(arr1) === JSON.stringify(arr2);
+    };
+
+    const objectsEqual = (obj1: any, obj2: any) => {
+        return JSON.stringify(obj1) === JSON.stringify(obj2);
     };
 
     const runTest = (code: string) => {
@@ -75,9 +86,23 @@ const TestOutput = (props: Props) => {
         <div className="output">
             <div>Results:</div>
             {result.map((item, index) =>
-                result.length > props.currentChallenge.expectedOutputs.length ||
-                false ? (
-                    <div key={index}></div>
+                result.length >
+                props.currentChallenge.expectedOutputs.length ? (
+                    index === 0 ? (
+                        result[0] !==
+                        "'" +
+                            props.currentChallenge.functionName +
+                            "' is not defined" ? (
+                            <div key={index}>{result[0]}</div>
+                        ) : (
+                            <div key={index}>Start Typing to Evaluate</div>
+                        )
+                    ) : index >=
+                      props.currentChallenge.expectedOutputs.length + 1 ? (
+                        <div key={index}></div>
+                    ) : (
+                        <div key={index}></div>
+                    )
                 ) : (
                     <div key={index}>{item}</div>
                 )
