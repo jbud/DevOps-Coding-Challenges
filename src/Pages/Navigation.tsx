@@ -70,11 +70,12 @@ const Navigation = (props: NavProps) => {
     };
     return (
         <Tabs
-            centered
             value={value}
             onChange={handleChange}
             aria-label="nav tabs example"
             role="navigation"
+            variant="scrollable"
+            scrollButtons="auto"
             sx={{
                 "&:hover": {
                     color: "#40a9ff",
