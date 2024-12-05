@@ -19,6 +19,8 @@ export const NumLeapYears: Challenge = {
 }`,
     // the number of parameters for your function's input (currently limited to 1 or 2):
     params: 1,
+    inType: "string",
+    outType: "number",
     // Expected outputs for given inputs during evaluation:
     // NOTE: Challenges are evaluated real-time for each object in this array, keep it small (recommend max 3 tests)
     expectedOutputs: [
