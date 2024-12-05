@@ -1,4 +1,4 @@
-import { Challenge } from "../types";
+import { Challenge } from "../lib/types";
 import { Addition } from "./addition";
 import { SortArray } from "./sortArray";
 import { SortArrays } from "./sortArrays";

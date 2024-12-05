@@ -1,4 +1,4 @@
-import { Challenge } from "../types";
+import { Challenge } from "../lib/types";
 
 export const SortArrays: Challenge = {
     // Name your challenge
