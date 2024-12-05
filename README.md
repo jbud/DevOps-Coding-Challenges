@@ -1,6 +1,6 @@
 # DevOps Coding Challenge
 
-level up your skills with this interactive IDE based webapp with coding challenges that's completely FREE, open source, and community driven.
+level up your skills with this interactive IDE based webapp with coding challenges that's completely FREE, open source, and community driven. Now featuring 100% more vite
 
 ## Roadmap
 
@@ -19,7 +19,7 @@ level up your skills with this interactive IDE based webapp with coding challeng
 -   [ ] Bug Fixes.
 
 ## Live Version
-available at [https://dev-ops-kohl.vercel.app/](https://dev-ops-kohl.vercel.app/)
+available at [https://dev-ops-gamma.vercel.app/](https://dev-ops-gamma.vercel.app/)
 
 ## Development Instructions
 
@@ -27,10 +27,10 @@ Open a pull request from a fork in your repo. Please describe your changes
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run dev`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
