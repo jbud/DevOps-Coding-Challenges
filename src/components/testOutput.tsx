@@ -30,11 +30,23 @@ const TestOutput = (props: Props) => {
     const generateParams = (x: ParamGen) => {
         switch (props.currentChallenge.inType) {
             case "array":
-                return "[" + x.in[0].toString() + "]";
+                if (props.currentChallenge.params === 1)
+                    return "[" + x.in[0].toString() + "]";
+                else if (Array.isArray(x.in)) {
+                    let text = "";
+                    x.in.map((y, i) => {
+                        text += "[" + y.toString() + "]";
+                        if (i < props.currentChallenge.params - 1) {
+                            text += ",";
+                        }
+                    });
+                    return text;
+                }
+                break;
             case "string":
                 return x.in.length === 1
                     ? '"' + x.in[0] + '"'
-                    : '"' + x.in[0] + '"' + "," + '"' + x.in[1] + '"';
+                    : '"' + x.in[0] + '","' + x.in[1] + '"';
             case "number":
             default:
                 return x.in.length === 1 ? x.in[0] : x.in[0] + "," + x.in[1];
@@ -51,7 +63,7 @@ const TestOutput = (props: Props) => {
 
     const runTest = (code: string) => {
         setResult([]);
-        let t = props.currentChallenge.expectedOutputs.map((x) => {
+        props.currentChallenge.expectedOutputs.map((x) => {
             const d = generateParams(x);
             const testStr = props.currentChallenge.functionName + "(" + d + ")";
             const str = code + " " + testStr;
@@ -75,6 +87,7 @@ const TestOutput = (props: Props) => {
                 else message += " Failed!\n";
                 setResult((e) => [...e, message]);
             });
+            return 1;
         });
         return true;
     };
