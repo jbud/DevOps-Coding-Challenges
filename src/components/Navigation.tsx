@@ -91,7 +91,7 @@ const Navigation = (props: NavProps) => {
             }}
         >
             {/*{props.challengeSelect.outputText.map((x) => (*/}
-            {Challenges.map((x, index) => (
+            {Challenges.map((x: any, index: any) => (
                 <LinkTab key={index} label={x.title} href={"/chal/" + index} />
             ))}
         </Tabs>

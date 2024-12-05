@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route, useMatch } from "react-router-dom";
 import "./App.css";
 import Ide from "./components/ide";
-import Page from "./pages/Page";
+import Page from "./Pages/Page";
 import { Challenges } from "./challenges/challenges";
 import Navigation from "./components/Navigation";
 
