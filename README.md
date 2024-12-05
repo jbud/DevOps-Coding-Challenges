@@ -6,9 +6,10 @@ level up your skills with this interactive IDE based webapp with coding challeng
 
 -   [x] Stylish dark-mode IDE with Jetbrains Mono font.
 -   [x] Real-time code execution/evaluation.
--   [-] Ability to add Challenges:
+-   [ ] Ability to add Challenges:
     -   [x] Manually.
     -   [x] Via pull request easily with a simple file including a Challenge object.
+            - An example pull request is available at [#3](https://github.com/jbud/DevOps-Coding-Challenges/pull/3)
     -   [ ] Via form interface on the website it's self.
 -   [ ] Navigation with ReactRouter
 -   [ ] MaterialUI styling
