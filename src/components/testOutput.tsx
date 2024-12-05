@@ -63,6 +63,7 @@ const TestOutput = (props: Props) => {
                     try {
                         if (!arraysEqual(JSON.parse(s), x.out)) passed = false;
                     } catch (e) {
+                        passed = false;
                         message =
                             testStr + " => Expected [" + x.out + "] got " + s;
                     }
@@ -93,7 +94,9 @@ const TestOutput = (props: Props) => {
                         "'" +
                             props.currentChallenge.functionName +
                             "' is not defined" ? (
-                            <div key={index}>{result[0]}</div>
+                            <div style={{ color: "orange" }} key={index}>
+                                {result[0]}
+                            </div>
                         ) : (
                             <div key={index}>Start Typing to Evaluate</div>
                         )
@@ -104,7 +107,18 @@ const TestOutput = (props: Props) => {
                         <div key={index}></div>
                     )
                 ) : (
-                    <div key={index}>{item}</div>
+                    <div
+                        style={{
+                            color: result[0].includes("Failed!")
+                                ? "Red"
+                                : result[0].includes("Passed!")
+                                ? "greenyellow"
+                                : "inherit",
+                        }}
+                        key={index}
+                    >
+                        {item}
+                    </div>
                 )
             )}
         </div>
