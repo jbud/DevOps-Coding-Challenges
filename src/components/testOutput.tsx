@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getQuickJS } from "quickjs-emscripten";
 import { Challenge } from "../lib/types";
+import { useTest } from "../hooks/useTest";
 
 interface Props {
     code: string;
@@ -9,129 +9,85 @@ interface Props {
 
 const TestOutput = (props: Props) => {
     const [result, setResult] = useState([""]);
-    const evaluate = async (code: string) => {
-        return getQuickJS()
-            .then((QuickJS) => {
-                const r = QuickJS.evalCode(code.trim());
-                const res = JSON.stringify(r);
-                return res;
-            })
-            .catch((e) => {
-                console.log(e);
-                const message = (e as Error).message;
-                setResult([message]);
-                return "failed";
-            });
-    };
-    interface ParamGen {
-        in: any;
-        out: any;
-    }
-    const generateParams = (x: ParamGen) => {
-        switch (props.currentChallenge.inType) {
-            case "array":
-                if (props.currentChallenge.params === 1)
-                    return "[" + x.in[0].toString() + "]";
-                else if (Array.isArray(x.in)) {
-                    let text = "";
-                    x.in.map((y, i) => {
-                        text += "[" + y.toString() + "]";
-                        if (i < props.currentChallenge.params - 1) {
-                            text += ",";
-                        }
-                    });
-                    return text;
-                }
-                break;
-            case "string":
-                return x.in.length === 1
-                    ? '"' + x.in[0] + '"'
-                    : '"' + x.in[0] + '","' + x.in[1] + '"';
-            case "number":
-            default:
-                return x.in.length === 1 ? x.in[0] : x.in[0] + "," + x.in[1];
-        }
-    };
-
-    const arraysEqual = (arr1: any[], arr2: any[]) => {
-        return JSON.stringify(arr1) === JSON.stringify(arr2);
-    };
-
-    /* const objectsEqual = (obj1: any, obj2: any) => {
-        return JSON.stringify(obj1) === JSON.stringify(obj2);
-    }; */
+    const [testResult, getTestResult] = useTest();
+    const [loopSafety, setLoopSafety] = useState(0);
 
     const runTest = (code: string) => {
-        setResult([]);
-        props.currentChallenge.expectedOutputs.map((x) => {
-            const d = generateParams(x);
-            const testStr = props.currentChallenge.functionName + "(" + d + ")";
-            const str = code + " " + testStr;
-
-            evaluate(str).then((s) => {
-                let passed = true;
-                let message = "";
-                if (Array.isArray(x.out)) {
-                    try {
-                        if (!arraysEqual(JSON.parse(s), x.out)) passed = false;
-                    } catch (e) {
-                        passed = false;
-                        message =
-                            testStr + " => Expected [" + x.out + "] got " + s;
-                    }
-                } else if (s != x.out) passed = false;
-                if (Array.isArray(x.out))
-                    message = testStr + " => Expected [" + x.out + "] got " + s;
-                else message = testStr + " => Expected " + x.out + " got " + s;
-                if (passed) message += " Passed!\n";
-                else message += " Failed!\n";
-                setResult((e) => [...e, message]);
-            });
-            return 1;
-        });
-        return true;
+        getTestResult(code, props.currentChallenge);
     };
 
     useEffect(() => {
+        if (testResult[0] !== undefined) {
+            if (
+                testResult[0].includes(
+                    "ERROR: '" +
+                        props.currentChallenge.functionName +
+                        "' is not defined"
+                )
+            ) {
+                // State didn't update between challenges, we will trigger the refresh effect here:
+                setLoopSafety((e) => e + 1);
+            }
+        }
+        setResult(testResult);
+    }, [testResult]);
+
+    useEffect(() => {
+        if (loopSafety < 3) {
+            runTest(props.code); // attempt to refresh state.
+        } else {
+            setResult([
+                "ERROR: '" +
+                    props.currentChallenge.functionName +
+                    "' is not defined",
+            ]); // We will fall through to the original error, likely caused by misspelling the function.
+        }
+    }, [loopSafety]);
+
+    useEffect(() => {
         runTest(props.code);
+        setLoopSafety(0);
     }, [props]);
 
     return (
         <div className="output">
             <div>Results:</div>
             {result.map((item, index) =>
-                result.length >
-                props.currentChallenge.expectedOutputs.length ? (
-                    index === 0 ? (
-                        result[0] !==
-                        "'" +
-                            props.currentChallenge.functionName +
-                            "' is not defined" ? (
-                            <div style={{ color: "orange" }} key={index}>
-                                {result[0]}
-                            </div>
-                        ) : (
-                            <div key={index}>Start Typing to Evaluate</div>
-                        )
-                    ) : index >=
-                      props.currentChallenge.expectedOutputs.length + 1 ? (
-                        <div key={index}></div>
+                index === 0 ? (
+                    result[0].includes("ERROR") ? (
+                        <p style={{ color: "orange" }} key={index}>
+                            {result[0]}
+                        </p>
                     ) : (
-                        <div key={index}></div>
+                        <p
+                            style={{
+                                color: result[index].includes("Failed!")
+                                    ? "Red"
+                                    : result[index].includes("Passed!")
+                                    ? "greenyellow"
+                                    : "inherit",
+                            }}
+                            key={index}
+                        >
+                            {item}
+                        </p>
                     )
+                ) : index >=
+                  props.currentChallenge.expectedOutputs.length + 1 ? (
+                    <p key={index}></p>
                 ) : (
-                    <div
+                    <p
                         style={{
-                            color: result[0].includes("Failed!")
+                            color: result[index].includes("Failed!")
                                 ? "Red"
-                                : result[0].includes("Passed!")
+                                : result[index].includes("Passed!")
                                 ? "greenyellow"
                                 : "inherit",
                         }}
                         key={index}
                     >
                         {item}
-                    </div>
+                    </p>
                 )
             )}
         </div>

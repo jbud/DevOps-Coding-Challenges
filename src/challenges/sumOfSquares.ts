@@ -3,9 +3,10 @@ import { Challenge } from "../lib/types";
 export const SumOfSquares: Challenge = {
     title: "Sum of Squares",
     description:
-        "Create a function that takes a number N and returns the sum of all square numbers up to and including N.",
+        "Create a function that takes an integer N and returns the sum of all square integers up to and including N.",
     outputText: [
         `squaresSum(3) ==> 14`,
+        `1² + 2² + 3² = 14`,
         `squaresSum(12) ==> 650`,
         `squaresSum(13) ==> 819`,
     ],

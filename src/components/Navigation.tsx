@@ -11,9 +11,9 @@ interface LinkTabProps {
 interface NavProps {
     page: string | undefined;
 }
-function samePageLinkNavigation(
+const samePageLinkNavigation = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-) {
+) => {
     if (
         event.defaultPrevented ||
         event.button !== 0 || // ignore everything but left-click
@@ -25,9 +25,9 @@ function samePageLinkNavigation(
         return false;
     }
     return true;
-}
+};
 
-function LinkTab(props: LinkTabProps) {
+const LinkTab = (props: LinkTabProps) => {
     return (
         <Tab
             component="a"
@@ -49,7 +49,7 @@ function LinkTab(props: LinkTabProps) {
             {...props}
         />
     );
-}
+};
 const Navigation = (props: NavProps) => {
     const [value, setValue] = React.useState(0);
 
